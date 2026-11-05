@@ -2,33 +2,42 @@ package com.johnhaynes.fintrack.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.johnhaynes.fintrack.data.database.DatabaseBuilder
 import com.johnhaynes.fintrack.data.entity.Transaction
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
-/**
- * Handles searching through transactions using a search bar.
- */
 class SearchViewModel : ViewModel() {
 
     private val _results = MutableStateFlow<List<Transaction>>(emptyList())
     val results: StateFlow<List<Transaction>> = _results
 
+    private val sampleTransactions = listOf(
+        Transaction(1, "Paycheck", 1500.0, "Income"),
+        Transaction(2, "Groceries", -120.0, "Food"),
+        Transaction(3, "Rent", -900.0, "Housing"),
+        Transaction(4, "Gas", -60.0, "Transportation"),
+        Transaction(5, "Electric Bill", -98.0, "Utilities"),
+        Transaction(6, "Internet", -75.0, "Utilities"),
+        Transaction(7, "Phone Bill", -85.0, "Utilities"),
+        Transaction(8, "Restaurant", -42.0, "Dining"),
+        Transaction(9, "Coffee", -12.0, "Dining"),
+        Transaction(10, "Movie Tickets", -30.0, "Entertainment"),
+        Transaction(11, "Car Insurance", -140.0, "Insurance"),
+        Transaction(12, "Savings Deposit", 300.0, "Savings")
+    )
+
     fun search(context: Context, query: String) {
-        val db = DatabaseBuilder.getDatabase(context)
-        val transactionDao = db.transactionDao()
 
-        viewModelScope.launch {
-            val allTransactions = transactionDao.getAllTransactions()
+        if (query.isBlank()) {
+            _results.value = emptyList()
+            return
+        }
 
-            val filtered = allTransactions.filter { transaction ->
-                transaction.description.contains(query, ignoreCase = true)
-            }
-
-            _results.value = filtered
+        _results.value = sampleTransactions.filter {
+            it.description.contains(
+                query,
+                ignoreCase = true
+            )
         }
     }
 }

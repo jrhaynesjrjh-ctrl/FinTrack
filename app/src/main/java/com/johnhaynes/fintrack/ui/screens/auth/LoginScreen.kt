@@ -1,5 +1,5 @@
 package com.johnhaynes.fintrack.ui.screens.auth
-
+import androidx.compose.material3.ExperimentalMaterial3Api
 import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.johnhaynes.fintrack.viewmodel.AuthViewModel
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     context: Context,

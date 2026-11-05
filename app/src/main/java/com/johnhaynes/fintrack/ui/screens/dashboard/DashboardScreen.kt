@@ -13,7 +13,8 @@ import com.johnhaynes.fintrack.viewmodel.DashboardViewModel
 @Composable
 fun DashboardScreen(
     context: Context,
-    dashboardViewModel: DashboardViewModel
+    dashboardViewModel: DashboardViewModel,
+    onSearchClick: () -> Unit
 ) {
     // Load dashboard data when screen opens
     LaunchedEffect(Unit) {
@@ -49,6 +50,17 @@ fun DashboardScreen(
             text = "Recent Transactions",
             style = MaterialTheme.typography.titleMedium
         )
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Button(
+            onClick = onSearchClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Search Transactions")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -62,7 +74,7 @@ fun DashboardScreen(
                     Column(modifier = Modifier.padding(12.dp)) {
                         Text(text = transaction.description)
                         Text(text = "Amount: $${transaction.amount}")
-                        Text(text = "Category ID: ${transaction.categoryId}")
+                        Text(text = "Category : ${transaction.category}")
                     }
                 }
             }

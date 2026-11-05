@@ -26,13 +26,22 @@ fun AppNavHost(
         navController = navController,
         startDestination = NavRoutes.LOGIN
     ) {
-
         composable(NavRoutes.LOGIN) {
             LoginScreen(
                 context = context,
                 authViewModel = authViewModel,
                 onLoginSuccess = {
                     navController.navigate(NavRoutes.DASHBOARD)
+                }
+            )
+        }
+
+        composable(NavRoutes.DASHBOARD) {
+            DashboardScreen(
+                context = context,
+                dashboardViewModel = dashboardViewModel,
+                onSearchClick = {
+                    navController.navigate(NavRoutes.SEARCH)
                 }
             )
         }
@@ -58,12 +67,7 @@ fun AppNavHost(
             )
         }
 
-        composable(NavRoutes.DASHBOARD) {
-            DashboardScreen(
-                context = context,
-                dashboardViewModel = dashboardViewModel
-            )
-        }
+
 
         composable(NavRoutes.SEARCH) {
             SearchScreen(

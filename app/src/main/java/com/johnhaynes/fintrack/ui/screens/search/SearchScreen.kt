@@ -1,4 +1,5 @@
 package com.johnhaynes.fintrack.ui.screens.search
+import androidx.compose.material3.ExperimentalMaterial3Api
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
@@ -9,7 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.johnhaynes.fintrack.viewmodel.SearchViewModel
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
     context: Context,
@@ -54,7 +55,7 @@ fun SearchScreen(
                     Column(modifier = Modifier.padding(12.dp)) {
                         Text(text = transaction.description)
                         Text(text = "Amount: $${transaction.amount}")
-                        Text(text = "Category ID: ${transaction.categoryId}")
+                        Text(text = "Category : ${transaction.category}")
                     }
                 }
             }
