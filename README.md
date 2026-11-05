@@ -1,4 +1,4 @@
-# SDC480-FinTrack
+# FinTrack
 Personal Finance Tracker – SDC480 Capstone Project
 FinTrack is a personal finance tracking app built for the SDC480 Capstone Project at ECPI University.
 It allows users to manage income, expenses, and transactions using Jetpack Compose and a Room database.
